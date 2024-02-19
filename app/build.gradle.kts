@@ -2,6 +2,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.kapt") version "1.9.22"
+    id("androidx.navigation.safeargs")
+    id("org.jetbrains.kotlin.plugin.parcelize") version "1.9.22"
 }
 
 android {

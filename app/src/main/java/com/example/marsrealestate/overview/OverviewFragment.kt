@@ -7,7 +7,9 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.marsrealestate.R
 import com.example.marsrealestate.databinding.FragmentOverviewBinding
 
@@ -33,7 +35,17 @@ class OverviewFragment : Fragment() {
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
 
-        binding.photosGrid.adapter = PhotoGridAdapter()
+        binding.photosGrid.adapter = PhotoGridAdapter(PhotoGridAdapter.OnClickListener {
+            viewModel.displayPropertyDetails(it)
+        })
+
+        // Observe
+        viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
+            if (null != it) {
+                this.findNavController().navigate(OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(it))
+                viewModel.displayPropertyDetailsComplete()
+            }
+        })
 
         // Enable options
         setHasOptionsMenu(true)
