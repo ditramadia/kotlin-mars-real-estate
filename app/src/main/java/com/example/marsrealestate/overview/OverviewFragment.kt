@@ -3,6 +3,8 @@ package com.example.marsrealestate.overview
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.marsrealestate.R
@@ -16,6 +18,19 @@ class OverviewFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         val binding = FragmentOverviewBinding.inflate(inflater)
+
+        // Enable options
+        setHasOptionsMenu(true)
+
         return binding.root
+    }
+
+    /**
+     * Inflates the overflow menu that contains filtering options.
+     */
+    @Deprecated("Deprecated in Java")
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.overflow_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 }
