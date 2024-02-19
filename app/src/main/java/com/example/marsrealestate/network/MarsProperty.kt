@@ -1,5 +1,10 @@
 package com.example.marsrealestate.network
 
+import android.os.Parcelable
+import androidx.versionedparcelable.VersionedParcelize
+import com.squareup.moshi.Json
+import kotlinx.parcelize.Parcelize
+
 /*
  * Copyright 2018, The Android Open Source Project
  *
@@ -17,4 +22,13 @@ package com.example.marsrealestate.network
  *
  */
 
-class MarsProperty()
+@Parcelize
+data class MarsProperty (
+    val id: String,
+    @Json(name = "img_src") val imgSrcUrl: String,
+    val type: String,
+    val price: Double
+) : Parcelable {
+    val isRental
+        get() = type == "rent"
+}
