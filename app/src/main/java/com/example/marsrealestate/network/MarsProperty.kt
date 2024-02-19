@@ -1,5 +1,6 @@
 package com.example.marsrealestate.network
 
+import androidx.versionedparcelable.VersionedParcelize
 import com.squareup.moshi.Json
 
 /*
@@ -19,6 +20,7 @@ import com.squareup.moshi.Json
  *
  */
 
+@VersionedParcelize
 data class MarsProperty (
     val id: String,
     @Json(name = "img_src") val imgSrcUrl: String,
